@@ -15,7 +15,7 @@ namespace config {
 /// Total width of the output line in terminal columns.
 /// NB: Nerd Font glyphs are typically 1 column wide; double-width
 ///     Unicode (CJK etc.) would break the column count.
-inline constexpr int BAR_WIDTH = 200;
+inline constexpr int BAR_WIDTH = 213;
 
 /// Width reserved for the clock on the right: " HH:MM:SS" (9 chars)
 inline constexpr int CLOCK_WIDTH = 9;
