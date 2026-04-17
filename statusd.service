@@ -1,0 +1,37 @@
+[Unit]
+Description=statusd — FIFO-to-statusbar notification daemon
+After=network.target
+Documentation=https://github.com/you/statusd
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/statusd
+Restart=always
+RestartSec=2s
+
+# Run as the logged-in user (replace 'youruser' or use a template unit)
+# For a user-level service (recommended), install to:
+#   ~/.config/systemd/user/statusd.service
+# and run with: systemctl --user enable --now statusd
+
+# Runtime directory for the FIFO and output file
+# systemd will create /run/user/<UID>/statusd automatically for user units.
+# For a system unit, use RuntimeDirectory= instead:
+RuntimeDirectory=statusd
+RuntimeDirectoryMode=0755
+
+# Hardening
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+NoNewPrivileges=true
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictRealtime=true
+
+# Allow writing only to our runtime directory
+ReadWritePaths=/run/statusd
+
+[Install]
+WantedBy=default.target
